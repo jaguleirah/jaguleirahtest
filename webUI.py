@@ -250,5 +250,30 @@ uvr = UVRInterface()
 uvr.cached_sources_clear()
 
 webui = UVRWebUI(uvr, online_data_path='models/download_checks.json')
+
+
 print(webui.models_url)
+model_dict = webui.models_url
+
+import os
+import wget
+
+for category, models in model_dict.items():
+    if category == 'VR Arc' or category == 'MDX-Net':
+
+        for model_name, model_url in models.items():
+            if category == 'VR Arc':
+                model_path = 'models/VR_Models'
+            elif category == 'MDX-Net':
+                model_path = 'models/MDX_Net_Models'
+
+            os.system(f"aria2c --optimize-concurrent-downloads --console-log-level=error --summary-interval=10 -j5 -x16 -s16 -k1M -c -d {model_path} -Z {model_url}")
+
+        print("models downloaded successfully.")
+    else:
+        print(f"Ignoring category: {category}")
+
+
+
+
 webui.launch()
