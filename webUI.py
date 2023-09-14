@@ -168,7 +168,7 @@ class UVRWebUI:
                             label=AGGRESSION_SETTING_MAIN_LABEL, interactive=True)
                     with gr.Row():
                         self.use_gpu = gr.Checkbox(
-                            label=GPU_CONVERSION_MAIN_LABEL, value=True, interactive=False) #label=GPU_CONVERSION_MAIN_LABEL, value=root.is_gpu_conversion_var.get(), interactive=True)
+                            label=GPU_CONVERSION_MAIN_LABEL+'>>>use this', value=True, interactive=True) #label=GPU_CONVERSION_MAIN_LABEL, value=root.is_gpu_conversion_var.get(), interactive=True)
                         self.primary_stem_only = gr.Checkbox(
                             label=f"{PRIMARY_STEM} only", value=root.is_primary_stem_only_var.get(), interactive=True)
                         self.secondary_stem_only = gr.Checkbox(
