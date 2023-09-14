@@ -150,6 +150,11 @@ class UVRWebUI:
     def define_layout(self):
         with gr.Blocks() as app:
             self.app = app
+            gr.HTML("<h1> 🎵 Ultimate Vocal Remover WebUI 🎵 </h1>")
+            gr.Markdown("Duplicate the space for use in private")
+            gr.Markdown(
+                "[![Duplicate this Space](https://huggingface.co/datasets/huggingface/badges/raw/main/duplicate-this-space-sm-dark.svg)](https://huggingface.co/spaces/r3gm/Ultimate-Vocal-Remover-WebUI?duplicate=true)\n\n"
+            ) 
             with gr.Tabs():
                 with gr.TabItem("process"):
                     with gr.Row():
@@ -168,7 +173,7 @@ class UVRWebUI:
                             label=AGGRESSION_SETTING_MAIN_LABEL, interactive=True)
                     with gr.Row():
                         self.use_gpu = gr.Checkbox(
-                            label=GPU_CONVERSION_MAIN_LABEL+'>>>use this', value=True, interactive=True) #label=GPU_CONVERSION_MAIN_LABEL, value=root.is_gpu_conversion_var.get(), interactive=True)
+                            label=GPU_CONVERSION_MAIN_LABEL+'>>>use this', value=True, interactive=False) #label=GPU_CONVERSION_MAIN_LABEL, value=root.is_gpu_conversion_var.get(), interactive=True)
                         self.primary_stem_only = gr.Checkbox(
                             label=f"{PRIMARY_STEM} only", value=root.is_primary_stem_only_var.get(), interactive=True)
                         self.secondary_stem_only = gr.Checkbox(
@@ -259,17 +264,17 @@ import os
 import wget
 
 for category, models in model_dict.items():
-    if category == 'VR Arc' or category == 'MDX-Net':
+    if category in ['VR Arc', 'MDX-Net']:
+        if category == 'VR Arc':
+            model_path = 'models/VR_Models'
+        elif category == 'MDX-Net':
+            model_path = 'models/MDX_Net_Models'
 
         for model_name, model_url in models.items():
-            if category == 'VR Arc':
-                model_path = 'models/VR_Models'
-            elif category == 'MDX-Net':
-                model_path = 'models/MDX_Net_Models'
+            cmd = f"aria2c --optimize-concurrent-downloads --console-log-level=error --summary-interval=10 -j5 -x16 -s16 -k1M -c -d {model_path} -Z {model_url}"
+            os.system(cmd)
 
-            os.system(f"aria2c --optimize-concurrent-downloads --console-log-level=error --summary-interval=10 -j5 -x16 -s16 -k1M -c -d {model_path} -Z {model_url}")
-
-        print("models downloaded successfully.")
+        print("Models downloaded successfully.")
     else:
         print(f"Ignoring category: {category}")
 
