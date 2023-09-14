@@ -1,7 +1,7 @@
 ---
 title: Ultimate Vocal Remover WebUI
-emoji: 🐨
-colorFrom: blue
+emoji: 🎵
+colorFrom: pink
 colorTo: yellow
 sdk: gradio
 sdk_version: 3.44.2
