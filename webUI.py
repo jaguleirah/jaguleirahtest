@@ -248,6 +248,7 @@ class UVRWebUI:
 
 uvr = UVRInterface()
 uvr.cached_sources_clear()
-print(uvr.models_url)
+
 webui = UVRWebUI(uvr, online_data_path='models/download_checks.json')
+print(webui.models_url)
 webui.launch()
