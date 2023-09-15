@@ -151,7 +151,7 @@ class UVRWebUI:
         with gr.Blocks() as app:
             self.app = app
             gr.HTML("<h1> 🎵 Ultimate Vocal Remover WebUI 🎵 </h1>")
-            gr.Markdown("Duplicate the space for use in private")
+            gr.Markdown("This is an experimental demo with CPU. Duplicate the space for use in private")
             gr.Markdown(
                 "[![Duplicate this Space](https://huggingface.co/datasets/huggingface/badges/raw/main/duplicate-this-space-sm-dark.svg)](https://huggingface.co/spaces/r3gm/Ultimate-Vocal-Remover-WebUI?duplicate=true)\n\n"
             ) 
@@ -159,15 +159,15 @@ class UVRWebUI:
                 with gr.TabItem("process"):
                     with gr.Row():
                         self.arch_choice = gr.Dropdown(
-                            choices=[VR_ARCH_TYPE, MDX_ARCH_TYPE, DEMUCS_ARCH_TYPE], value=VR_ARCH_TYPE,
+                            choices=[VR_ARCH_TYPE, MDX_ARCH_TYPE], value=VR_ARCH_TYPE, # choices=[VR_ARCH_TYPE, MDX_ARCH_TYPE, DEMUCS_ARCH_TYPE], value=VR_ARCH_TYPE,
                             label=CHOOSE_PROC_METHOD_MAIN_LABEL, interactive=True)
                         self.model_choice = gr.Dropdown(
                             choices=self.get_local_models(VR_ARCH_TYPE), value=CHOOSE_MODEL,
-                            label=SELECT_VR_MODEL_MAIN_LABEL, interactive=True)
+                            label=SELECT_VR_MODEL_MAIN_LABEL+' 👋Select a model', interactive=True)
                     with gr.Row():
                         self.arch_setting1 = gr.Dropdown(
                             choices=VR_WINDOW, value=root.window_size_var.get(),
-                            label=WINDOW_SIZE_MAIN_LABEL, interactive=True)
+                            label=WINDOW_SIZE_MAIN_LABEL+' 👋Select one', interactive=True)
                         self.arch_setting2 = gr.Dropdown(
                             choices=VR_AGGRESSION, value=root.aggression_setting_var.get(),
                             label=AGGRESSION_SETTING_MAIN_LABEL, interactive=True)
